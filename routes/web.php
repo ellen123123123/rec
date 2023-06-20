@@ -1,18 +1,13 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ExpenseController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [ExpenseController::class, 'index']);
+Route::get('/earn', [ExpenseController::class, 'earn']);
+Route::get('/expenses/create', [ExpenseController::class, 'create']);
+Route::post('/expenses/store', [ExpenseController::class, 'store']);
+Route::get('/manage-categories', [CategoryController::class, 'index']);
+Route::post('/categories/store', [CategoryController::class, 'store']);
+Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
