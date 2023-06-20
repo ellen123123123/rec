@@ -22,4 +22,5 @@ class CreateIncomesTable extends Migration
     {
         Schema::dropIfExists('incomes');
     }
+
 }

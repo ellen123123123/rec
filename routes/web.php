@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ExpenseController::class, 'index']);
 Route::get('/earn', [ExpenseController::class, 'earn']);
+Route::get('/expense', [ExpenseController::class, 'create']);
+
 Route::get('/expenses/create', [ExpenseController::class, 'create']);
 Route::post('/expenses/store', [ExpenseController::class, 'store']);
 Route::get('/manage-categories', [CategoryController::class, 'index']);
