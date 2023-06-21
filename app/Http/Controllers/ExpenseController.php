@@ -81,4 +81,24 @@ class ExpenseController extends Controller
         // Redirecionar para a página principal ou exibir uma mensagem de sucesso
         return redirect('/')->with('success', 'Despesa adicionada com sucesso!');
     }
+
+    public function destroy($id)
+    {
+        // Encontre o gasto pelo ID e exclua-o
+        $expense = Expense::findOrFail($id);
+        $expense->delete();
+
+        // Redirecionar para a página principal ou exibir uma mensagem de sucesso
+        return redirect('/')->with('success', 'Despesa excluída com sucesso!');
+    }
+    public function destroyIncome($income)
+    {
+        // Encontre o ganho pelo ID e exclua-o
+        $income = Income::findOrFail($income);
+        $income->delete();
+
+        // Redirecionar para a página de histórico de ganhos ou exibir uma mensagem de sucesso
+        return redirect()->route('historic.ganhos')->with('success', 'Ganho excluído com sucesso!');
+    }
+
 }

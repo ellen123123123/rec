@@ -6,36 +6,107 @@
     <title>Document</title>
     <style>
       body {
-        background-color: #ddd;
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
       }
 
       main {
-        margin: auto;
-        width: 500px;
-        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-
-        background-color: white;
-        border: solid 2px #888;
+        height: 100vh;
+        background-color: #fff;
+        border: solid 2px #ccc;
         border-radius: 10px;
         padding: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        max-width: 90%;
+        margin: 0 auto;
       }
-      
-      canvas {
-        max-width: 60%;
-        max-height: 70%
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #333;
       }
-      .grapg{
-        height: 500px;
+
+      label {
+        font-size: 18px;
+        font-weight: bold;
+        color: #555;
       }
-      .spent{
-        background-color:crimson
+
+      #chartCanvas {
+        max-width: 400px;
+        max-height: 300px;
+        margin-bottom: 40px;
       }
-      .earn{
-        background-color: greenyellow
+
+      .button-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .button-container button {
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        margin-right: 10px;
+        transition: background-color 0.3s ease;
+        outline: none;
+      }
+
+      .button-container button.spent {
+        background-color: #ff0066; /* Magenta */
+        color: #fff;
+      }
+
+      .button-container button.earn {
+        background-color: #00b3b3; /* Cyan */
+        color: #fff;
+      }
+
+      .button-container button:hover {
+        background-color: #cc0052; /* Darker Magenta */
+      }
+
+      .button-container button:last-child {
+        margin-right: 0;
+      }
+
+      .history-button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .history-button-container button {
+        padding: 10px 20px;
+        font-size: 14px;
+        font-weight: bold;
+        border: none;
+        background-color: #f5f5f5;
+        color: #333;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        outline: none;
+      }
+
+      .history-button-container button:hover {
+        background-color: #e5e5e5;
+      }
+
+      .history-button-container button:first-child {
+        margin-right: 10px;
       }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -45,16 +116,17 @@
     <h1>Saldo:</h1>
     <label>R$ {{ $saldo }}</label>
 
-
     <canvas id="chartCanvas"></canvas>
-    <div>
+
+    <div class="button-container">
       <button onclick="window.location.href='/expense'" class="spent">Adicionar gasto</button>
       <button onclick="window.location.href='/earn'" class="earn">Adicionar ganho</button>
     </div>
-    
 
-    <button onclick="window.location.href = '/historico/despesas'">Histórico de Perdas</button>
-    <button onclick="window.location.href = '/historico/ganhos'">Histórico de Ganhos</button>
+    <div class="history-button-container">
+      <button onclick="window.location.href = '/historico/despesas'">Histórico de Despesas</button>
+      <button onclick="window.location.href = '/historico/ganhos'">Histórico de Ganhos</button>
+    </div>
   </main>
 
   <script>
