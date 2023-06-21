@@ -1,33 +1,24 @@
-<?php
-// Variáveis e arrays demo
-$categories = [
-    (object) ['id' => 1, 'category_name' => 'Categoria 1'],
-    (object) ['id' => 2, 'category_name' => 'Categoria 2'],
-    (object) ['id' => 3, 'category_name' => 'Categoria 3']
-];
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar Gasto</title>
+    <title>Criar Ganho</title>
 </head>
 <body>
     <a href="/">Voltar</a> <!-- Botão para voltar à página principal -->
 
-    <h1>Criar Gasto</h1>
+    <h1>Criar Ganho</h1>
 
-    <form method="POST" action="processar-gasto.php">
+    <form method="POST" action="{{ url('/incomes/store') }}">
         @csrf
 
         <label for="category">Categoria:</label>
         <select id="category" name="category">
             <option value="">Selecione uma categoria</option>
-            <?php foreach($categories as $category): ?>
-                <option value="<?php echo $category->id; ?>"><?php echo $category->category_name; ?></option>
-            <?php endforeach; ?>
+            @foreach($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+            @endforeach
         </select>
 
         <br><br>
@@ -36,17 +27,17 @@ $categories = [
 
         <br><br>
 
-        <label for="expense_date">Data:</label>
-        <input type="date" id="expense_date" name="expense_date">
+        <label for="income_date">Data:</label>
+        <input type="date" id="income_date" name="income_date">
 
         <br><br>
 
-        <label for="expense_name">Nome do Gasto:</label>
-        <input type="text" id="expense_name" name="expense_name">
+        <label for="income_name">Nome do Ganho:</label>
+        <input type="text" id="income_name" name="income_name">
 
         <br><br>
 
-        <button type="submit">Adicionar Gasto</button>
+        <button type="submit">Adicionar Ganho</button>
     </form>
 
 </body>

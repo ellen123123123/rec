@@ -54,7 +54,7 @@
     </div>
     
 
-    <button>Histórico</button>
+    <button onclick="window.location.href = '/historico'">Histórico</button>
   </main>
 
   <script>
