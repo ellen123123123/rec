@@ -43,9 +43,8 @@
 <body>
   <main>
     <h1>Saldo:</h1>
-    <div class="graph">
-      <label for="">R$ 11,94</label>
-    </div>
+    <label>R$ {{ $saldo }}</label>
+
 
     <canvas id="chartCanvas"></canvas>
     <div>
@@ -54,7 +53,7 @@
     </div>
     
 
-    <button onclick="window.location.href = '/historico/perdas'">Histórico de Perdas</button>
+    <button onclick="window.location.href = '/historico/despesas'">Histórico de Perdas</button>
     <button onclick="window.location.href = '/historico/ganhos'">Histórico de Ganhos</button>
   </main>
 
@@ -66,10 +65,10 @@
     const chart = new Chart(chartCanvas, {
       type: 'pie',
       data: {
-        labels: ['Blue', 'Red', 'Yellow', 'Green', 'Light Green', ],
+        labels: [@foreach($categories as $category) '{{ $category->category_name }}', @endforeach],
         datasets: [{
-          data: [2, 4, 5, 3, 2, ],
-          backgroundColor: ['blue', 'red', 'yellow', 'green', 'lightgreen', ]
+          data: [@foreach($categories as $category) {{ $category->total_expenses }}, @endforeach],
+          backgroundColor: [@foreach($categories as $category) '{{ $category->color }}', @endforeach]
         }]
       },
       options: {
@@ -78,5 +77,6 @@
       }
     });
   </script>
+
 </body>
 </html>

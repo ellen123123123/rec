@@ -37,6 +37,11 @@
 
         <br><br>
 
+        <label for="amount">Valor:</label>
+        <input type="number" id="amount" name="amount">
+
+        <br><br>
+
         <button type="submit">Adicionar Despesa</button>
     </form>
 

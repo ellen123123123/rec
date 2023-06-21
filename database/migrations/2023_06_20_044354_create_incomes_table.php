@@ -14,6 +14,7 @@ class CreateIncomesTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->date('income_date');
             $table->string('income_name');
+            $table->decimal('amount', 10, 2); // Adiciona o campo 'amount' para o valor com precisão de 10 dígitos e 2 casas decimais
             $table->timestamps();
         });
     }
@@ -22,5 +23,4 @@ class CreateIncomesTable extends Migration
     {
         Schema::dropIfExists('incomes');
     }
-
 }
