@@ -3,18 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 use App\Models\Expense;
 use App\Models\Income;
 
 class HistoryController extends Controller
 {
-    public function index()
+    public function expenses()
     {
-        $expenses = Expense::all();
-        $incomes = Income::all();
+        $expenses = Expense::with('category')->get();
 
-        $transactions = $expenses->concat($incomes);
-
-        return view('history', compact('transactions'));
+        return view('history', compact('expenses'));
     }
 }

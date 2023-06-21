@@ -19,14 +19,19 @@ class ExpenseController extends Controller
         $categories = Category::all();
         return view('earn', compact('categories'));
     }
-
-    public function create()
+    public function expense()
     {
         $categories = Category::all();
         return view('expense', compact('categories'));
     }
+/*
+    public function create()
+    {
+        $categories = Category::all();
+        return view('expense', compact('categories'));
+    }*/
 
-    public function store(Request $request)
+    public function storeIncome(Request $request)
     {
         // Valide os dados recebidos do formulário
         $validatedData = $request->validate([
@@ -45,13 +50,24 @@ class ExpenseController extends Controller
         // Redirecionar para a página principal ou exibir uma mensagem de sucesso
         return redirect('/')->with('success', 'Ganho adicionado com sucesso!');
     }
-    
-    public function historico()
+    public function storeExpense(Request $request)
     {
-        // Recupere os gastos e ganhos do banco de dados (variáveis demo)
-        $expenses = Expense::all();
-        $incomes = Income::all();
+        // Valide os dados recebidos do formulário
+        $validatedData = $request->validate([
+            'category' => 'required',
+            'expense_date' => 'required|date',
+            'expense_name' => 'required|string|max:255',
+        ]);
 
-        return view('historico', compact('expenses', 'incomes'));
+        // Processar e salvar os dados do formulário aqui
+        $expense = new Expense();
+        $expense->category_id = $request->category;
+        $expense->expense_date = $request->expense_date;
+        $expense->expense_name = $request->expense_name;
+        $expense->save();
+
+        // Redirecionar para a página principal ou exibir uma mensagem de sucesso
+        return redirect('/')->with('success', 'Despesa adicionada com sucesso!');
     }
+
 }
